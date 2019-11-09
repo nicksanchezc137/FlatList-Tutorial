@@ -13,7 +13,7 @@ import {
   FlatList,
   View,
   Text,
-  StatusBar,
+  Platform,
 } from 'react-native';
 
 import {getMoviesFromApiAsync} from "./getMovies";
@@ -48,6 +48,7 @@ class App extends React.Component {
       
       </View>
       <FlatList
+         ItemSeparatorComponent={()=><View style = {styles.separator}/>}
         data={movies}
         renderItem={({ item }) => this.movieView(item)}
         keyExtractor={item => item.id}
@@ -65,17 +66,18 @@ const styles = StyleSheet.create({
    flex:1
   },
   movie_view:{
-   elevation:3,
    justifyContent:'center',
    alignItems:'center',
    padding:10,
    backgroundColor:"#fff",
    height:50,
-   marginBottom:5,
-   margin:3
+  },
+  separator:{
+    borderWidth:.3,
+  borderBottomColor:"#999",
   },
   header: {
-     backgroundColor: '#2ECB95',
+     backgroundColor: '#212121',
      elevation:3,
      justifyContent:'center',
      alignItems:'center',
